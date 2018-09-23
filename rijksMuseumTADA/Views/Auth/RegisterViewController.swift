@@ -8,28 +8,49 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var agreement: CheckBox!
+    
+    let viewModel = UserViewModel()
+    
+    
+    @IBAction func onRegisterTap(_ sender: Any) {
+        if !agreement.isChecked{
+            self.showConfirmAlert(title: "", message: "Please check Agreement first", callback: nil)
+            return
+        }
+        
+        switch viewModel.validate() {
+        case .Valid:
+            viewModel.register { (errMsg) in
+                if errMsg == nil{
+                    self.performSegue(withIdentifier: "login", sender: nil)
+                }else{
+                    self.showConfirmAlert(title: "", message: errMsg!, callback: nil)
+                }
+            }
+        case let .Invalid(msg):
+            self.showConfirmAlert(title: "", message: msg, callback: nil)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc func textFieldDidChange(textField: UITextField){
+        if textField == username{
+            viewModel.updateUsername(username: textField.text!)
+        }else if textField == password{
+            viewModel.updatePassword(password: textField.text!)
+        }
     }
-    */
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        username.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        password.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+    }
+
 
 }

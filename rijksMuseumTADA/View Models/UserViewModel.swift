@@ -82,4 +82,32 @@ extension UserViewModel{
             }
         }
     }
+    
+    func register(completion: @escaping (_ msg: String?) -> Void){
+        let provider = MoyaProvider<AuthApi>()
+        provider.request(.register(email: user.username, password: user.password)) { (result) in
+            switch result{
+            case let .success(response):
+                do{
+                    let responseJSON:Any = try response.mapJSON()
+                    let responseObject:AuthResponse = Mapper<AuthResponse>().map(JSONObject: responseJSON)!
+                    if responseObject.error == nil || responseObject.error == "" {
+                        let userData = UserLoginProvider.getLoginData()
+                        
+                        userData.updateUsername(self.user.username)
+                        userData.updateToken(responseObject.token!)
+                        
+                        completion(nil)
+                    }else{
+                        completion(responseObject.error)
+                    }
+                    
+                }catch{
+                    completion("Server returned invalid message")
+                }
+            case .failure(_):
+                completion("Server failed to response")
+            }
+        }
+    }
 }

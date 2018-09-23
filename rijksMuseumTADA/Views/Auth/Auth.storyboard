@@ -120,12 +120,12 @@
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="MainFlow" id="SYu-bs-aqE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dfe-dN-IMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="947" y="414"/>
+            <point key="canvasLocation" x="987" y="439"/>
         </scene>
         <!--Register-->
         <scene sceneID="0RA-L0-FFK">
             <objects>
-                <viewController title="Register" id="qZd-Bo-ZlR" sceneMemberID="viewController">
+                <viewController title="Register" id="qZd-Bo-ZlR" customClass="RegisterViewController" customModule="rijksMuseumTADA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BgG-PE-bo8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,6 +144,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="qZd-Bo-ZlR" id="qle-K6-2l7"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rlj-PV-P5a">
                                 <rect key="frame" x="20" y="195" width="335" height="40"/>
@@ -153,6 +156,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="qZd-Bo-ZlR" id="xrw-tL-vE7"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBS-sG-Ozv" customClass="CheckBox" customModule="rijksMuseumTADA" customModuleProvider="target">
                                 <rect key="frame" x="20" y="255" width="335" height="24"/>
@@ -177,6 +183,9 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onRegisterTap:" destination="qZd-Bo-ZlR" eventType="touchUpInside" id="Hmy-gJ-fIV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -197,10 +206,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q0B-si-8P9"/>
                     </view>
+                    <connections>
+                        <outlet property="agreement" destination="CBS-sG-Ozv" id="TT4-mV-AHm"/>
+                        <outlet property="password" destination="Rlj-PV-P5a" id="tDx-06-b5w"/>
+                        <outlet property="username" destination="nwI-UA-Wbv" id="jaC-2v-9IM"/>
+                        <segue destination="SYu-bs-aqE" kind="show" identifier="login" id="3hQ-4V-njR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEu-rF-4Bb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1716" y="-24"/>
+            <point key="canvasLocation" x="1698" y="-24"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hON-md-Nv5">
@@ -224,4 +239,7 @@
     <resources>
         <image name="ic_check_box_outline_blank" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="3hQ-4V-njR"/>
+    </inferredMetricsTieBreakers>
 </document>

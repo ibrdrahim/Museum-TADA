@@ -31,25 +31,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.showConfirmAlert(title: "", message: msg, callback: nil)
         }
     }
+    
     @IBAction func onRegisterTap(_ sender: Any) {
         self.performSegue(withIdentifier: "register", sender: nil)
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        
+    @objc func textFieldDidChange(textField: UITextField){
         if textField == username{
-            viewModel.updateUsername(username: newString)
+            viewModel.updateUsername(username: textField.text!)
         }else if textField == password{
-            viewModel.updatePassword(password: newString)
+            viewModel.updatePassword(password: textField.text!)
         }
-        return true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        username.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        password.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
     }
 
 }
