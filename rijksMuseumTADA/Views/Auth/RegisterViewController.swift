@@ -37,6 +37,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        // Try to find next responder
+        let nextResponder = textField.superview!.viewWithTag(nextTag) as UIResponder?
+        if nextResponder != nil {
+            // Found next responder, so set it
+            nextResponder?.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+    
     @objc func textFieldDidChange(textField: UITextField){
         if textField == username{
             viewModel.updateUsername(username: textField.text!)
