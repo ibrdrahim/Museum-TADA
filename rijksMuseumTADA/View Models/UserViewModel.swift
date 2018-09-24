@@ -57,9 +57,11 @@ extension UserViewModel{
     
     func login(completion: @escaping (_ msg: String?) -> Void){
         let provider = MoyaProvider<AuthApi>()
+        LoadingOverlay.shared.showOverlay()
         provider.request(.login(email: user.username, password: user.password)) { (result) in
             switch result{
             case let .success(response):
+                LoadingOverlay.shared.hideOverlay()
                 do{
                     let responseJSON:Any = try response.mapJSON()
                     let responseObject:AuthResponse = Mapper<AuthResponse>().map(JSONObject: responseJSON)!
@@ -78,6 +80,7 @@ extension UserViewModel{
                     completion("Server returned invalid message")
                 }
             case .failure(_):
+                LoadingOverlay.shared.hideOverlay()
                 completion("Server failed to response")
             }
         }
@@ -85,9 +88,11 @@ extension UserViewModel{
     
     func register(completion: @escaping (_ msg: String?) -> Void){
         let provider = MoyaProvider<AuthApi>()
+        LoadingOverlay.shared.showOverlay()
         provider.request(.register(email: user.username, password: user.password)) { (result) in
             switch result{
             case let .success(response):
+                LoadingOverlay.shared.hideOverlay()
                 do{
                     let responseJSON:Any = try response.mapJSON()
                     let responseObject:AuthResponse = Mapper<AuthResponse>().map(JSONObject: responseJSON)!
@@ -106,6 +111,7 @@ extension UserViewModel{
                     completion("Server returned invalid message")
                 }
             case .failure(_):
+                LoadingOverlay.shared.hideOverlay()
                 completion("Server failed to response")
             }
         }

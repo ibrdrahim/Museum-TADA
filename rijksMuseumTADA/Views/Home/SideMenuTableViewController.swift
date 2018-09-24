@@ -43,7 +43,7 @@ class SideMenuTableViewController: UITableViewController {
         let Storyboard = UIStoryboard(name: "Main", bundle: nil)
         dismiss(animated: true) {
             if indexPath.item == 0{
-                let vc = Storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                let vc = Storyboard.instantiateViewController(withIdentifier: "MainFlow")
                 UIApplication.shared.keyWindow?.rootViewController = vc
             }else if indexPath.item == 1{
                 let vc = Storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController

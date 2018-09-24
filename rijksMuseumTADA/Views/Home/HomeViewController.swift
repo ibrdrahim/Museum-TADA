@@ -38,7 +38,7 @@ class HomeViewController: SideMenuViewController, UICollectionViewDelegateFlowLa
         self.viewModel.museumsObservable.bind(to: self.museumCollectionView.rx.items) { [unowned self] cv, row, el in
             let indexPath = IndexPath(row: row, section: 0)
             let cell = cv.dequeueReusableCell(withReuseIdentifier: self.museumCellViewReusableId, for: indexPath) as! MuseumCollectionViewCell
-            
+            cell.museum = el
             cell.museumImage.sd_setImage(with: URL(string: el.headerUrl), placeholderImage: #imageLiteral(resourceName: "placeholder3"))
             cell.museumTitle.text = el.title
             
@@ -56,7 +56,8 @@ class HomeViewController: SideMenuViewController, UICollectionViewDelegateFlowLa
             .disposed(by: disposeBag)
         self.museumCollectionView.rx.itemSelected
             .subscribe(onNext: { [unowned self] indexPath in
-                self.performSegue(withIdentifier: "detail", sender: indexPath.row)
+                let cell = self.museumCollectionView.cellForItem(at: indexPath) as? MuseumCollectionViewCell
+                self.performSegue(withIdentifier: "detail", sender: cell?.museum)
             }).disposed(by: disposeBag)
         self.museumCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
     }
@@ -75,8 +76,9 @@ class HomeViewController: SideMenuViewController, UICollectionViewDelegateFlowLa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detail"{
             let dc = segue.destination as! DetailViewController
-            dc.imageUrl = viewModel.museums[sender as! Int].imageUrl
-            dc.museumDesc = viewModel.museums[sender as! Int].longTitle
+            let museum = sender as? MuseumViewModel.MuseumCollectionViewCellData
+            dc.imageUrl = museum?.imageUrl
+            dc.museumDesc = museum?.longTitle
         }
     }
 

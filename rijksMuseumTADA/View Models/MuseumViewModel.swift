@@ -38,7 +38,7 @@ class MuseumViewModel {
     func refreshInitialMuseumData(page: Int = 0, per_page: Int = 10) {
         self.startIndexProducts = 0
         self.museums.removeAll()
-        
+        LoadingOverlay.shared.showOverlay()
         var req = MuseumRequest()
         req.p = page
         req.ps = per_page
@@ -46,6 +46,7 @@ class MuseumViewModel {
         museumApiClient.getProducts(req: req)
             .subscribe(
                 onNext: { [unowned self] res in
+                    LoadingOverlay.shared.hideOverlay()
                     let formattedView = res.data.map {
                         return (
                             imageUrl: $0.webImage!,
@@ -58,6 +59,7 @@ class MuseumViewModel {
                     self.museums = formattedView
                     self.museumsObservable.onNext(formattedView)
                 }, onError: { err in
+                    LoadingOverlay.shared.hideOverlay()
                     self.museumsObservable.onNext([])
             })
             .disposed(by: disposeBag)
@@ -70,10 +72,12 @@ class MuseumViewModel {
         var req = MuseumRequest()
         req.p = startIndexProducts
         req.ps = per_page
+        LoadingOverlay.shared.showOverlay()
         
         museumApiClient.getProducts(req: req)
             .subscribe(
                 onNext: { [unowned self] res in
+                LoadingOverlay.shared.hideOverlay()
                 let formattedView = res.data.map {
                     return (
                         imageUrl: $0.webImage!,
@@ -86,6 +90,7 @@ class MuseumViewModel {
                 self.museums.append(contentsOf: formattedView)
                 self.museumsObservable.onNext(self.museums)
                 }, onError: { err in
+                    LoadingOverlay.shared.hideOverlay()
                     self.museumsObservable.onNext([])
             })
             .disposed(by: disposeBag)

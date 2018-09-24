@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleMuseum.text = museumDesc
-        imageMuseum.sd_setImage(with: URL(string: imageUrl!), placeholderImage: #imageLiteral(resourceName: "placeholder3"))
+        imageMuseum.sd_setImage(with: URL(string: imageUrl ?? ""), placeholderImage: #imageLiteral(resourceName: "placeholder3"))
     }
     
     override func viewWillAppear(_ animated: Bool) {

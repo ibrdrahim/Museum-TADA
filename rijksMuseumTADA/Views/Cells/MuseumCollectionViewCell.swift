@@ -12,6 +12,7 @@ class MuseumCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var museumImage: UIImageView!
     @IBOutlet weak var museumTitle: UILabel!
+    var museum: MuseumViewModel.MuseumCollectionViewCellData?
     
     override func awakeFromNib() {
         super.awakeFromNib()
