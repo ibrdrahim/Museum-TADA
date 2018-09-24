@@ -120,7 +120,7 @@
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="MainFlow" id="SYu-bs-aqE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dfe-dN-IMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="987" y="439"/>
+            <point key="canvasLocation" x="1314" y="434"/>
         </scene>
         <!--Register-->
         <scene sceneID="0RA-L0-FFK">

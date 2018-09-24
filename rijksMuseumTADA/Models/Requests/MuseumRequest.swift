@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct MuseumRequest {
+    var p: Int = 0
+    var ps: Int = 10
+}

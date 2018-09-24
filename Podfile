@@ -7,13 +7,18 @@ target 'rijksMuseumTADA' do
 
   # Pods for rijksMuseumTADA
 
-  # Alamofire HTTP networking library
-    pod 'Moya'
-    pod 'ObjectMapper'
-  # Realm For Local Storage
+    pod 'RxSwift'
+    pod 'RxCocoa'
+
+  # Moya HTTP networking library
+    pod 'Moya/RxSwift'
+    pod 'Moya-ObjectMapper/RxSwift'
+  # Realm for Local Storage
     pod 'RealmSwift'
-  # SideMenu For Sidemenu Harmburger button
+  # SideMenu for Sidemenu Harmburger button
     pod 'SideMenu'
+  # SDWebImage for Load Image
+    pod 'SDWebImage', '~> 4.0'
 
   target 'rijksMuseumTADATests' do
     inherit! :search_paths

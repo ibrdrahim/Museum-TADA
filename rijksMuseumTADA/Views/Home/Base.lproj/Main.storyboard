@@ -96,7 +96,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="s4M-uH-q4J"/>
                     <connections>
-                        <segue destination="oIn-Gv-az8" kind="show" id="RfQ-db-jne"/>
+                        <outlet property="museumCollectionView" destination="3if-PM-8AM" id="4mb-IE-G2C"/>
+                        <segue destination="oIn-Gv-az8" kind="show" identifier="detail" id="RfQ-db-jne"/>
                         <segue destination="oCn-4T-Nlz" kind="show" identifier="profile" id="2gz-9S-P7D"/>
                     </connections>
                 </viewController>
@@ -240,6 +241,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Z9c-LI-U98"/>
                     </view>
+                    <connections>
+                        <outlet property="imageMuseum" destination="ZTy-fh-5ha" id="SxF-9k-aYV"/>
+                        <outlet property="titleMuseum" destination="LAA-Vj-rh9" id="AJm-76-dpK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oei-kM-28j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -248,7 +253,6 @@
         <!--Navigation Controller-->
         <scene sceneID="hpD-Sr-wRb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YVd-0M-AAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="MainFlow" automaticallyAdjustsScrollViewInsets="NO" id="Umd-SZ-ZmK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DSb-ux-yBU">
@@ -263,6 +267,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="18K-S2-Rc3"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YVd-0M-AAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1150" y="-266"/>
         </scene>
@@ -416,7 +421,7 @@
         <image name="ic_menu" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MBJ-tD-iQN"/>
+        <segue reference="2gz-9S-P7D"/>
         <segue reference="5gc-kn-4HK"/>
     </inferredMetricsTieBreakers>
 </document>

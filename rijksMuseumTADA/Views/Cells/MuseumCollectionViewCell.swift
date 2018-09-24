@@ -10,8 +10,14 @@ import UIKit
 
 class MuseumCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var museumImage: UIImageView!
+    @IBOutlet weak var museumTitle: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layer.cornerRadius = 25
+        self.layer.borderWidth = 1.0
+        self.layer.borderColor = UIColor.lightGray.cgColor
         // Initialization code
     }
 

@@ -50,5 +50,4 @@ extension AuthApi: TargetType{
         return ["Content-Type": "application/json", "Content-type": "application/x-www-form-urlencoded"]
     }
     
-    
 }
