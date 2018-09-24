@@ -19,3 +19,8 @@ MVVM (Model, View, ViewModel)
 - Clone this repository
 - Run `pod install`
 - Open the xcworkspace
+
+
+## Preview
+
+![preview](./museum_preview.gif)
