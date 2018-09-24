@@ -33,4 +33,19 @@ class rijksMuseumTADATests: XCTestCase {
         }
     }
     
+    func testUserViewModelUsername(){
+        let username = "testuser"
+        let viewModel = UserViewModel()
+        viewModel.updateUsername(username: username)
+        XCTAssertEqual(username, viewModel.username)
+    }
+    
+    func testUserViewModelPassword(){
+        let password = "12345678"
+        let viewModel = UserViewModel()
+        viewModel.updatePassword(password: password)
+        XCTAssertEqual(password, viewModel.password)
+    }
+    
+    
 }
