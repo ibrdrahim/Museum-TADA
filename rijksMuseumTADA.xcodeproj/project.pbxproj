@@ -36,6 +36,7 @@
 		1B0459B12157DFC800FE86DD /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0459B02157DFC800FE86DD /* SideMenuTableViewController.swift */; };
 		1B0459B42157E9C700FE86DD /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0459B32157E9C700FE86DD /* SideMenuViewController.swift */; };
 		1B0459B62158988800FE86DD /* UILoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0459B52158988800FE86DD /* UILoadingOverlay.swift */; };
+		1B0459BA21589D4400FE86DD /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0459B921589D4400FE86DD /* NetworkReachability.swift */; };
 		33D73C3B777392F1826F6868 /* Pods_rijksMuseumTADA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330B9400CDF934EB7187EF3F /* Pods_rijksMuseumTADA.framework */; };
 		6DE97A3F78DEE0798EA918CC /* Pods_rijksMuseumTADATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C18AA0B031C43522FBFAB347 /* Pods_rijksMuseumTADATests.framework */; };
 		A1CD5C55CC1EC6349CDD1626 /* Pods_rijksMuseumTADAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D78B6E4D3F0578616B3522 /* Pods_rijksMuseumTADAUITests.framework */; };
@@ -95,6 +96,7 @@
 		1B0459B02157DFC800FE86DD /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		1B0459B32157E9C700FE86DD /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		1B0459B52158988800FE86DD /* UILoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILoadingOverlay.swift; sourceTree = "<group>"; };
+		1B0459B921589D4400FE86DD /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		23E502404AC985C1A51B8D90 /* Pods-rijksMuseumTADAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rijksMuseumTADAUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-rijksMuseumTADAUITests/Pods-rijksMuseumTADAUITests.release.xcconfig"; sourceTree = "<group>"; };
 		330B9400CDF934EB7187EF3F /* Pods_rijksMuseumTADA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rijksMuseumTADA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		407180C396242E0550DDB3F5 /* Pods-rijksMuseumTADATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rijksMuseumTADATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rijksMuseumTADATests/Pods-rijksMuseumTADATests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				1B045979215779B600FE86DD /* UIExtension.swift */,
 				1B0459B52158988800FE86DD /* UILoadingOverlay.swift */,
+				1B0459B921589D4400FE86DD /* NetworkReachability.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B0459BA21589D4400FE86DD /* NetworkReachability.swift in Sources */,
 				1B04599A21577AE400FE86DD /* MuseumApiEndpoint.swift in Sources */,
 				1B04598921577A6000FE86DD /* LoginViewController.swift in Sources */,
 				1B0459A021579C7400FE86DD /* AuthApiEndpoint.swift in Sources */,

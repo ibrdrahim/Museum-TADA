@@ -15,6 +15,19 @@ import SDWebImage
 
 class HomeViewController: SideMenuViewController, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var reloadButton: UIButton!
+    
+    @IBAction func reloadDidTap(_ sender: Any) {
+        if NetworkReachability.getcurrentReachabilityStatus() == .notReachable{
+            self.museumCollectionView.isHidden = true
+            reloadButton.isHidden = false
+            showNoInternetConnection()
+        }else{
+            self.museumCollectionView.isHidden = false
+            reloadButton.isHidden = true
+            self.viewModel.refreshInitialMuseumData()
+        }
+    }
     
     @IBOutlet weak var museumCollectionView: UICollectionView!
     
@@ -28,13 +41,22 @@ class HomeViewController: SideMenuViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        
     }
     
     private func setupCollectionView() {
         
         let cell = UINib(nibName: "MuseumCollectionViewCell", bundle: nil)
         museumCollectionView.register(cell, forCellWithReuseIdentifier: "MuseumCollectionViewCell")
-        self.viewModel.refreshInitialMuseumData()
+        
+        if NetworkReachability.getcurrentReachabilityStatus() != .notReachable{
+            self.museumCollectionView.isHidden = false
+            self.viewModel.refreshInitialMuseumData()
+        }else{
+            self.museumCollectionView.isHidden = true
+            self.reloadButton.isHidden = false
+        }
+        
         self.viewModel.museumsObservable.bind(to: self.museumCollectionView.rx.items) { [unowned self] cv, row, el in
             let indexPath = IndexPath(row: row, section: 0)
             let cell = cv.dequeueReusableCell(withReuseIdentifier: self.museumCellViewReusableId, for: indexPath) as! MuseumCollectionViewCell
@@ -50,7 +72,9 @@ class HomeViewController: SideMenuViewController, UICollectionViewDelegateFlowLa
             .subscribe(onNext: { [unowned self] _ in
                 if (self.museumCollectionView.contentOffset.y >= (self.museumCollectionView.contentSize.height - self.museumCollectionView.frame.size.height)) {
                     //reach bottom
-                    self.viewModel.refreshMuseumDataInfinity()
+                    if NetworkReachability.getcurrentReachabilityStatus() != .notReachable{
+                        self.viewModel.refreshMuseumDataInfinity()
+                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -64,6 +88,15 @@ class HomeViewController: SideMenuViewController, UICollectionViewDelegateFlowLa
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        if NetworkReachability.getcurrentReachabilityStatus() == .notReachable{
+            self.museumCollectionView.isHidden = true
+            reloadButton.isHidden = false
+            showNoInternetConnection()
+        }else{
+            self.museumCollectionView.isHidden = false
+            reloadButton.isHidden = true
+            self.viewModel.refreshInitialMuseumData()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -80,6 +113,10 @@ class HomeViewController: SideMenuViewController, UICollectionViewDelegateFlowLa
             dc.imageUrl = museum?.imageUrl
             dc.museumDesc = museum?.longTitle
         }
+    }
+    
+    func showNoInternetConnection(){
+        self.showConfirmAlert(title: "", message: "No Internet Connection", callback: nil)
     }
 
 }

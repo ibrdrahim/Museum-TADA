@@ -78,6 +78,18 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bX-e5-j6O">
+                                <rect key="frame" x="147" y="353" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6bX-e5-j6O" secondAttribute="height" multiplier="13:4" id="mtj-F0-Eu9"/>
+                                </constraints>
+                                <state key="normal" title="Reload" image="ic_refresh">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="reloadDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fOE-Y9-krc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -87,7 +99,9 @@
                             <constraint firstItem="nFO-pn-P8J" firstAttribute="top" secondItem="sBc-9E-pJL" secondAttribute="bottom" id="Ppy-BC-dsB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3if-PM-8AM" secondAttribute="trailing" id="Thr-xf-Hnw"/>
                             <constraint firstItem="3if-PM-8AM" firstAttribute="top" secondItem="nFO-pn-P8J" secondAttribute="bottom" id="Vnp-wA-71r"/>
+                            <constraint firstItem="6bX-e5-j6O" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Vzj-Nr-veY"/>
                             <constraint firstItem="3if-PM-8AM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="W6W-KD-TXn"/>
+                            <constraint firstItem="6bX-e5-j6O" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="dRj-lz-CeY"/>
                             <constraint firstItem="sBc-9E-pJL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="leX-pq-6qV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nFO-pn-P8J" secondAttribute="trailing" id="ohg-xP-pxI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sBc-9E-pJL" secondAttribute="trailing" id="yye-KK-YQD"/>
@@ -97,6 +111,7 @@
                     <navigationItem key="navigationItem" title="Home" id="s4M-uH-q4J"/>
                     <connections>
                         <outlet property="museumCollectionView" destination="3if-PM-8AM" id="4mb-IE-G2C"/>
+                        <outlet property="reloadButton" destination="6bX-e5-j6O" id="Fdw-C1-GUz"/>
                         <segue destination="oIn-Gv-az8" kind="show" identifier="detail" id="RfQ-db-jne"/>
                         <segue destination="oCn-4T-Nlz" kind="show" identifier="profile" id="2gz-9S-P7D"/>
                     </connections>
@@ -419,6 +434,7 @@
         <image name="ic_account" width="24" height="24"/>
         <image name="ic_home" width="24" height="24"/>
         <image name="ic_menu" width="24" height="24"/>
+        <image name="ic_refresh" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2gz-9S-P7D"/>
