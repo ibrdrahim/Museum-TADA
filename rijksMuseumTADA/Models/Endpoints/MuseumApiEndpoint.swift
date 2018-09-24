@@ -40,7 +40,7 @@ extension MuseumApi: TargetType{
         switch self {
         case .collection(let request):
             let api_key = "N1r8D73d"
-            return .requestParameters(parameters: ["key" : api_key, "p": request.p, "ps" : request.ps], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["imgonly" : true, "key" : api_key, "p": request.p, "ps" : request.ps], encoding: URLEncoding.default)
         }
     }
     
